@@ -31,6 +31,8 @@ struct MainScreen: View {
                             Image(systemName: "\(word.count).circle")
                             Text(word)
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel("\(word), \(word.count) letters")
                     }
                 }
                 
@@ -52,7 +54,6 @@ struct MainScreen: View {
                     } label: {
                         Text("Restart Game")
                     }
-
                 }
             })
             .alert(errorTitle, isPresented: $showingError) {
@@ -126,7 +127,7 @@ struct MainScreen: View {
         for letter in word {
             if let pos = tempWord.firstIndex(of: letter) {
                 tempWord.remove(at: pos)
-            } else {return false}
+            } else { return false }
         }
         
         return true
